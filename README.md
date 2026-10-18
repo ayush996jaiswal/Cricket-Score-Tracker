@@ -1,4 +1,4 @@
 # Cricket-Score-Tracker
 This is my First mini project
 <br>
-Author - Ayush Jaiswal
+Author - Ayush Jaiswal (AIMT)
