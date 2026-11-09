@@ -1,0 +1,828 @@
+/* CSS=========================================================
+   CRICKET SCORE TRACKER — FULL SCREEN UI
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SCREEN SYSTEM
+   ========================================================= */
+
+.screen {
+    width: 100%;
+    min-height: 100vh;
+    padding: 18px;
+    position: relative;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   GENERAL CONTAINER
+   ========================================================= */
+
+.screen > * {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1 {
+    text-align: center;
+    font-size: clamp(28px, 4vw, 48px);
+    margin-bottom: 12px;
+}
+
+h2 {
+    text-align: center;
+    font-size: clamp(20px, 3vw, 32px);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #b9c5d6;
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+    width: min(100%, 900px);
+    margin: 12px auto;
+    padding: 20px;
+    border-radius: 18px;
+    background: #101d30;
+    border: 1px solid #263a55;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 13px;
+    margin: 6px 0;
+    border-radius: 10px;
+    border: 1px solid #3b506d;
+    background: #0b1627;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #4da3ff;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button,
+.main-btn {
+    min-height: 44px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    background: #1677ff;
+    color: #ffffff;
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+button:hover,
+.main-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+button:active,
+.main-btn:active {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   HOME / CREATE / DECISION
+   ========================================================= */
+
+#homeScreen,
+#createScreen,
+#decisionScreen,
+#aboutScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#homeScreen .card,
+#createScreen .card,
+#decisionScreen .card,
+#aboutScreen .card {
+    width: min(94vw, 650px);
+}
+
+
+/* =========================================================
+   TOSS SCREEN
+   ========================================================= */
+
+#tossScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tossScreen .card {
+    text-align: center;
+    width: min(94vw, 600px);
+}
+
+
+/* =========================================================
+   SCORE SCREEN
+   ========================================================= */
+
+#scoreScreen {
+    padding: 10px 14px;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SCORE HEADER
+   ========================================================= */
+
+#scoreScreen h1 {
+    font-size: clamp(22px, 3vw, 34px);
+    margin-bottom: 5px;
+}
+
+#scoreScreen h2 {
+    font-size: clamp(18px, 2.5vw, 28px);
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   SCORE TOP AREA
+   ========================================================= */
+
+.score-header,
+.score-top,
+.score-board,
+.score-summary {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto 8px;
+}
+
+
+/* =========================================================
+   BIG SCORE
+   ========================================================= */
+
+#score,
+#runs {
+    font-size: clamp(48px, 8vw, 90px);
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+}
+
+#scoreText {
+    font-size: clamp(38px, 7vw, 75px);
+    font-weight: 900;
+    text-align: center;
+}
+
+
+/* =========================================================
+   SCORE INFORMATION
+   ========================================================= */
+
+.score-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 5px auto;
+}
+
+.score-info > div {
+    background: #101d30;
+    border: 1px solid #263a55;
+    border-radius: 10px;
+    padding: 7px 13px;
+    min-width: 95px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   RUN RATE / TARGET
+   ========================================================= */
+
+#runRate,
+#overs,
+#wickets {
+    font-weight: 800;
+}
+
+#targetText {
+    text-align: center;
+    font-weight: 700;
+    color: #ffd54a;
+    min-height: 22px;
+}
+
+
+/* =========================================================
+   COMMENTARY
+   ========================================================= */
+
+#event,
+#eventText,
+#commentary {
+    width: 100%;
+    max-width: 1250px;
+    min-height: 45px;
+    margin: 7px auto;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #0e1b2d;
+    border-left: 4px solid #ffd54a;
+    color: #e9f1ff;
+    font-size: clamp(14px, 1.5vw, 18px);
+    text-align: center;
+}
+
+
+/* =========================================================
+   SCORING BUTTONS
+   ========================================================= */
+
+.score-buttons,
+.run-buttons,
+.scoring-buttons {
+    width: 100%;
+    max-width: 1250px;
+    margin: 6px auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.score-buttons button,
+.run-buttons button,
+.scoring-buttons button {
+    min-height: 48px;
+    margin: 0;
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   EXTRA BALL BUTTONS
+   ========================================================= */
+
+.extra-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 6px auto;
+}
+
+.extra-buttons button {
+    min-width: 105px;
+    margin: 0;
+}
+
+
+/* =========================================================
+   PLAYER AREA
+   ========================================================= */
+
+.player-area,
+.players-area,
+.player-panel {
+    width: 100%;
+    max-width: 1250px;
+    margin: 7px auto;
+
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+.player-area > *,
+.players-area > *,
+.player-panel > * {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   PLAYER CARDS
+   ========================================================= */
+
+.player-card {
+    background: #101d30;
+    border: 1px solid #263a55;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+}
+
+.player-card h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.player-card p {
+    color: #bdc9d9;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SELECTORS
+   ========================================================= */
+
+#striker,
+#nonStriker,
+#bowler {
+    min-height: 40px;
+    margin: 2px 0;
+}
+
+
+/* =========================================================
+   SCORECARD
+   ========================================================= */
+
+.scorecard,
+#scorecard {
+    width: 100%;
+    max-width: 1250px;
+    margin: 7px auto;
+    background: #0e1b2d;
+    border-radius: 12px;
+    border: 1px solid #263a55;
+    overflow: hidden;
+}
+
+.scorecard table,
+#scorecard table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scorecard th,
+.scorecard td,
+#scorecard th,
+#scorecard td {
+    padding: 7px 8px;
+    text-align: center;
+    border-bottom: 1px solid #263a55;
+    font-size: 13px;
+}
+
+.scorecard th,
+#scorecard th {
+    background: #16263c;
+}
+
+
+/* =========================================================
+   BATTING TABLE
+   ========================================================= */
+
+#battingTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#battingTable td {
+    padding: 6px;
+    border-bottom: 1px solid #263a55;
+}
+
+
+/* =========================================================
+   BALL HISTORY
+   ========================================================= */
+
+#ballHistory {
+    width: 100%;
+    max-width: 1250px;
+    margin: 6px auto;
+    min-height: 38px;
+    text-align: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 3px;
+}
+
+
+/* =========================================================
+   RESULT SCREEN
+   ========================================================= */
+
+#resultScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#winner {
+    font-size: clamp(30px, 6vw, 60px);
+    text-align: center;
+    font-weight: 900;
+}
+
+#resultDetails {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SCORE POPUP
+   ========================================================= */
+
+.score-popup {
+    position: fixed;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+
+    font-size: 50px;
+    font-weight: 900;
+
+    color: #ffffff;
+
+    pointer-events: none;
+
+    animation: scorePopup 0.7s ease forwards;
+}
+
+@keyframes scorePopup {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -20%)
+            scale(0.6);
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -100%)
+            scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   BUTTON ANIMATION
+   ========================================================= */
+
+.score-button-active {
+    transform: scale(0.92) !important;
+}
+
+
+/* =========================================================
+   DESKTOP FULL SCREEN
+   ========================================================= */
+
+@media (min-width: 900px) {
+
+    #scoreScreen {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1.6fr)
+            minmax(280px, 0.7fr);
+
+        grid-template-rows:
+            auto
+            auto
+            auto
+            1fr
+            auto;
+
+        column-gap: 12px;
+        row-gap: 6px;
+
+        align-items: start;
+    }
+
+
+    #scoreScreen > h1,
+    #scoreScreen > h2,
+    #scoreScreen > .subtitle {
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    #scoreScreen .score-buttons,
+    #scoreScreen .run-buttons,
+    #scoreScreen .scoring-buttons,
+    #scoreScreen .extra-buttons,
+    #scoreScreen #event,
+    #scoreScreen #eventText,
+    #scoreScreen #commentary {
+
+        grid-column: 1;
+
+    }
+
+
+    #scoreScreen .scorecard,
+    #scoreScreen #scorecard,
+    #scoreScreen .player-area,
+    #scoreScreen .players-area,
+    #scoreScreen .player-panel {
+
+        grid-column: 2;
+
+        grid-row: 2 / span 3;
+
+    }
+
+
+    #scoreScreen .score-buttons,
+    #scoreScreen .run-buttons,
+    #scoreScreen .scoring-buttons {
+
+        align-self: center;
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 899px) {
+
+    #scoreScreen {
+        overflow-y: auto;
+    }
+
+    .player-area,
+    .players-area,
+    .player-panel {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 8px;
+    }
+
+
+    #scoreScreen {
+        padding: 7px;
+    }
+
+
+    .card {
+        padding: 13px;
+        border-radius: 13px;
+    }
+
+
+    .score-buttons,
+    .run-buttons,
+    .scoring-buttons {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 5px;
+    }
+
+
+    .score-buttons button,
+    .run-buttons button,
+    .scoring-buttons button {
+        min-height: 44px;
+        font-size: 15px;
+    }
+
+
+    .player-area,
+    .players-area,
+    .player-panel {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .score-info {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 5px;
+    }
+
+
+    .score-info > div {
+        min-width: 0;
+        padding: 6px 3px;
+        font-size: 12px;
+    }
+
+
+    #event,
+    #eventText,
+    #commentary {
+        font-size: 13px;
+        padding: 8px;
+        min-height: 40px;
+    }
+
+
+    .scorecard th,
+    .scorecard td,
+    #scorecard th,
+    #scorecard td {
+        padding: 5px 3px;
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .score-buttons,
+    .run-buttons,
+    .scoring-buttons {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 4px;
+    }
+
+
+    .score-buttons button,
+    .run-buttons button,
+    .scoring-buttons button {
+        min-height: 40px;
+        padding: 6px 3px;
+        font-size: 13px;
+    }
+
+
+    #score,
+    #runs,
+    #scoreText {
+        font-size: 44px;
+    }
+
+}
+#ball-history {
+  display: flex;
+  flex-direction: row-reverse; /* Newest ball stays on the right, older balls stack to the left */
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px; /* Replaces margin-right on individual balls */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px;
+  direction: rtl; /* Optional: keeps the scrollbar natural if needed */
+}
+
+/* Reset the ball-item margin since we are using gap */
+.ball-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: bold;
+  animation: slideInBall 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  flex-shrink: 0;
+}
+@keyframes slideInBall {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-10px);
+  }
+  70% {
+    transform: scale(1.1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.ball-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
+  border-radius: 50%;
+  font-weight: bold;
+  animation: slideInBall 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Optional: Different colors for special events */
+.ball-wicket {
+  background-color: #ef4444;
+  color: white;
+}
+
+.ball-boundary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.ball-normal {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}

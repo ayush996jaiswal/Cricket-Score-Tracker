@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cricket Score Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HOME -->
+    <div id="homeScreen" class="screen">
+        <div class="logo">🏏</div>
+
+        <h1>Cricket Score Tracker</h1>
+
+        <p class="subtitle">
+            Simple • Fast • Professional
+        </p>
+
+        <div class="card">
+            <button class="main-btn" onclick="showCreateMatch()">
+                🏏 Create New Match
+            </button>
+
+            <button class="secondary-btn" onclick="showAbout()">
+                ℹ️ About App
+            </button>
+        </div>
+    </div>
+
+
+    <!-- CREATE MATCH -->
+    <div id="createScreen" class="screen hidden">
+
+        <h1>🏏 Create Match</h1>
+
+        <div class="card">
+
+            <label>Team A</label>
+
+            <select id="teamA">
+                <option value="">Select Team A</option>
+                <option value="India">🇮🇳 India</option>
+                <option value="Australia">🇦🇺 Australia</option>
+                <option value="England">🏴 England</option>
+                <option value="New Zealand">🇳🇿 New Zealand</option>
+                <option value="South Africa">🇿🇦 South Africa</option>
+                <option value="Pakistan">🇵🇰 Pakistan</option>
+                <option value="Sri Lanka">🇱🇰 Sri Lanka</option>
+                <option value="Bangladesh">🇧🇩 Bangladesh</option>
+                <option value="West Indies">🌴 West Indies</option>
+            </select>
+
+
+            <label>Team B</label>
+
+            <select id="teamB">
+                <option value="">Select Team B</option>
+                <option value="India">🇮🇳 India</option>
+                <option value="Australia">🇦🇺 Australia</option>
+                <option value="England">🏴 England</option>
+                <option value="New Zealand">🇳🇿 New Zealand</option>
+                <option value="South Africa">🇿🇦 South Africa</option>
+                <option value="Pakistan">🇵🇰 Pakistan</option>
+                <option value="Sri Lanka">🇱🇰 Sri Lanka</option>
+                <option value="Bangladesh">🇧🇩 Bangladesh</option>
+                <option value="West Indies">🌴 West Indies</option>
+            </select>
+
+
+            <label>Number of Overs</label>
+
+            <input
+                id="totalOvers"
+                type="number"
+                min="1"
+                max="50"
+                value="5"
+                placeholder="Number of Overs"
+            >
+
+
+            <button class="main-btn" onclick="startToss()">
+                Continue →
+            </button>
+
+            <button class="back-btn" onclick="goHome()">
+                ← Back
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- TOSS -->
+    <div id="tossScreen" class="screen hidden">
+
+        <h1>🪙 Toss</h1>
+
+        <div class="card">
+
+            <h2 id="tossTeams"></h2>
+
+            <p class="subtitle">
+                Choose who won the toss
+            </p>
+
+            <button
+                id="teamAButton"
+                class="main-btn"
+                onclick="tossWon('A')">
+            </button>
+
+            <button
+                id="teamBButton"
+                class="main-btn"
+                onclick="tossWon('B')">
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- TOSS DECISION -->
+    <div id="decisionScreen" class="screen hidden">
+
+        <h1>🏆 Toss Result</h1>
+
+        <div class="card">
+
+            <h2 id="tossWinnerText"></h2>
+
+            <p>
+                What do they want to do?
+            </p>
+
+            <button
+                class="main-btn"
+                onclick="chooseBatting()">
+                🏏 Bat First
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="chooseBowling()">
+                🎯 Bowl First
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- LIVE SCORE -->
+    <div id="scoreScreen" class="screen hidden">
+
+        <h1>🏏 Live Score</h1>
+
+
+        <!-- SCOREBOARD -->
+        <div class="card score-card">
+
+            <p class="innings" id="inningsText">
+                1st Innings
+            </p>
+
+            <h2 id="battingTeam">
+                India
+            </h2>
+
+            <div class="score">
+
+                <span id="runs">0</span>/
+
+                <span id="wickets">0</span>
+
+            </div>
+
+            <p>
+                Overs:
+                <b id="overs">0.0</b>
+            </p>
+
+            <p>
+                Run Rate:
+                <b id="runRate">0.00</b>
+            </p>
+
+            <p id="targetText"></p>
+
+        </div>
+
+
+        <!-- PITCH -->
+        <div class="pitch-card">
+
+            <div class="stadium-lights"></div>
+
+            <div class="pitch">
+
+                <div class="wicket wicket-left">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="pitch-strip"></div>
+
+                <div class="batter batter-left">
+                    🧍
+                </div>
+
+                <div class="batter batter-right">
+                    🧍
+                </div>
+
+                <div class="wicket wicket-right">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EVENT -->
+        <div id="event" class="event">
+            Match Started
+        </div>
+
+
+        <!-- PLAYERS -->
+        <div class="card">
+
+            <h2>👤 Players</h2>
+
+            <label>Striker</label>
+
+            <select id="striker"></select>
+
+
+            <label>Non-Striker</label>
+
+            <select id="nonStriker"></select>
+
+
+            <label>Bowler</label>
+
+            <select id="bowler"></select>
+
+        </div>
+
+
+        <!-- SCORE BUTTONS -->
+        <div class="card">
+
+            <h2>Score This Ball</h2>
+
+            <div class="buttons">
+
+                <button onclick="addRuns(0)">
+                    0
+                </button>
+
+                <button onclick="addRuns(1)">
+                    1
+                </button>
+
+                <button onclick="addRuns(2)">
+                    2
+                </button>
+
+                <button onclick="addRuns(3)">
+                    3
+                </button>
+
+                <button onclick="addRuns(4)">
+                    4
+                </button>
+
+                <button onclick="addRuns(6)">
+                    6
+                </button>
+
+                <button
+                    class="extra"
+                    onclick="addWide()">
+                    Wide +1
+                </button>
+
+                <button
+                    class="extra"
+                    onclick="addNoBall()">
+                    No Ball +1
+                </button>
+
+                <button
+                    class="wicket"
+                    onclick="addWicket()">
+                    Wicket
+                </button>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button onclick="undo()">
+                    ↩ Undo
+                </button>
+
+                <button onclick="resetMatch()">
+                    🔄 Reset
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCORECARD -->
+        <div class="card">
+
+            <h2>🏏 Batting Scorecard</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Batsman</th>
+                            <th>R</th>
+                            <th>B</th>
+                            <th>4s</th>
+                            <th>6s</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="battingTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- BALL HISTORY -->
+        <div class="card">
+
+            <h2>📋 Ball History</h2>
+
+            <div id="ballHistory">
+                No balls yet
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+    <div id="resultScreen" class="screen hidden">
+
+        <h1>🏆 Match Result</h1>
+
+        <div class="card result-card">
+
+            <h2 id="winner"></h2>
+
+            <p id="resultDetails"></p>
+
+            <button
+                class="main-btn"
+                onclick="newMatch()">
+                🏏 New Match
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ABOUT -->
+    <div id="aboutScreen" class="screen hidden">
+
+        <h1>ℹ️ About</h1>
+
+        <div class="card">
+
+            <p>
+                Cricket Score Tracker is a B.Tech mini project
+                for recording cricket match scores.
+            </p>
+
+            <br>
+
+            <p>
+                🏏 Automatic Players<br>
+                ⚡ Ball Animation<br>
+                📊 Live Scorecard<br>
+                🔊 Voice Commentary<br>
+                🏆 Match Result
+            </p>
+
+            <br>
+
+            <button
+                class="back-btn"
+                onclick="goHome()">
+                ← Back to Home
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCORE POPUP -->
+    <div id="scorePopup"></div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
